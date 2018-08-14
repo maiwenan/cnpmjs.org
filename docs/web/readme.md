@@ -4,10 +4,9 @@ So `cnpm` is meaning: **Company npm**.
 
 ## Registry
 
-- Our public registry: [r.cnpmjs.org](https://r.cnpmjs.org), syncing from [registry.npmjs.com](https://registry.npmjs.com)
+- Our public registry: [registry.npm.gridsum.com](https://registry.npm.gridsum.com), syncing from [registry.npmjs.com](https://registry.npmjs.com)
 - [cnpmjs.org](/) version: <span id="app-version"></span>
 - [Node.js](https://nodejs.org) version: <span id="node-version"></span>
-- For developers in China, please visit [the China mirror](https://npm.taobao.org). 中国用户请访问[国内镜像站点](https://npm.taobao.org)。
 
 <div class="ant-table">
 <table class="downloads">
@@ -59,40 +58,45 @@ So `cnpm` is meaning: **Company npm**.
 
 <script src="/js/readme.js"></script>
 
+## packages
+
+our package list entry is: http://npm.gridsum.com/list
+
 ## Badges
 
 Default style is `flat-square`.
 
 ### Version
 
-Badge URL: `https://cnpmjs.org/badge/v/cnpmjs.org.svg` ![cnpmjs.org-version-badge](//cnpmjs.org/badge/v/cnpmjs.org.svg)
+Badge URL: `https://npm.gridsum.com/badge/v/gs-ui.svg` ![gs-ui-version-badge](//npm.gridsum.com/badge/v/gs-ui.svg)
 
-* `<0.1.0 & >=0.0.0`: ![red-badge](https://img.shields.io/badge/cnpm-0.0.1-red.svg?style=flat-square)
-* `<1.0.0 & >=0.1.0`: ![red-badge](https://img.shields.io/badge/cnpm-0.1.0-green.svg?style=flat-square)
-* `>=1.0.0`: ![red-badge](https://img.shields.io/badge/cnpm-1.0.0-blue.svg?style=flat-square)
+* `<0.1.0 & >=0.0.0`: ![red-badge](https://img.shields.io/badge/gs-ui-0.0.1-red.svg?style=flat-square)
+* `<1.0.0 & >=0.1.0`: ![red-badge](https://img.shields.io/badge/gs-ui-0.1.0-green.svg?style=flat-square)
+* `>=1.0.0`: ![red-badge](https://img.shields.io/badge/gs-ui-1.0.0-blue.svg?style=flat-square)
 
 ### Downloads
 
-Badge URL: `https://cnpmjs.org/badge/d/cnpmjs.org.svg` ![cnpmjs.org-download-badge](//cnpmjs.org/badge/d/cnpmjs.org.svg)
+Badge URL: `https://npm.gridsum.com/badge/d/gs-ui.svg` ![gs-ui-download-badge](//npm.gridsum.com/badge/d/gs-ui.svg)
 
 ## Usage
 
-use our npm client [cnpm](https://github.com/cnpm/cnpm)(More suitable with cnpmjs.org and gzip support), you can get our client through npm:
+use npm client [cnpm](https://github.com/cnpm/cnpm)(More suitable with cnpmjs.org and gzip support), you can get our client through npm:
 
 ```bash
-$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+$ npm install -g cnpm --registry=https://registry.npm.gridsum.com
+$ cnpm set config registry=https://registry.npm.gridsum.com
 ```
 
 Or you can alias NPM to use it:
 
 ```bash
-alias cnpm="npm --registry=https://registry.npm.taobao.org \
+alias cnpm="npm --registry=https://registry.npm.gridsum.com \
 --cache=$HOME/.npm/.cache/cnpm \
 --disturl=https://npm.taobao.org/mirrors/node \
 --userconfig=$HOME/.cnpmrc"
 
 #Or alias it in .bashrc or .zshrc
-$ echo '\n#alias for cnpm\nalias cnpm="npm --registry=https://registry.npm.taobao.org \
+$ echo '\n#alias for cnpm\nalias cnpm="npm --registry=https://registry.npm.gridsum.com \
   --cache=$HOME/.npm/.cache/cnpm \
   --disturl=https://npm.taobao.org/mirrors/node \
   --userconfig=$HOME/.cnpmrc"' >> ~/.zshrc && source ~/.zshrc
@@ -100,7 +104,7 @@ $ echo '\n#alias for cnpm\nalias cnpm="npm --registry=https://registry.npm.taoba
 
 ### install
 
-Install package from [r.cnpmjs.org](//r.cnpmjs.org). When installing a package or version does not exist, it will try to install from the official registry([registry.npmjs.org](https://registry.npmjs.org)), and sync this package to cnpm in the backend.
+Install package from [registry.npm.gridsum.com](//registry.npm.gridsum.com). When installing a package or version does not exist, it will try to install from the official registry([registry.npmjs.org](https://registry.npmjs.org)), and sync this package to cnpm in the backend.
 
 ```bash
 $ cnpm install [name]
@@ -117,7 +121,7 @@ $ cnpm sync connect
 sync package on web: [sync/connect](/sync/connect)
 
 ```bash
-$ open http://registry.npm.taobao.org/sync/connect
+$ open http://registry.npm.gridsum.com/sync/connect
 ```
 
 ### publish / unpublish
@@ -136,20 +140,3 @@ Support all the other npm commands. e.g.:
 ```bash
 $ cnpm info cnpm
 ```
-
-## TODO list
-
-@see Github [Issues](https://github.com/cnpm/cnpmjs.org/issues)
-
-## Histories
-
-Release [History](/history).
-
-## npmjs.org, cnpmjs.org and npm.taobao.org relation
-
-![npm&cnpm](https://cloud.githubusercontent.com/assets/543405/21505401/fd0b6220-cca1-11e6-86ed-599cc81bb03b.png)
-
-## Sponsors
-
-- [![阿里云](https://static.aliyun.com/images/www-summerwind/logo.gif)](http://click.aliyun.com/m/4288/) (2016.2 - now)
-- [![UCloud云计算](https://www.ucloud.cn/static/style/images/about/logo.png)](http://www.ucloud.cn?sem=sdk-CNPMJS) (2015.3 - 2016.3)

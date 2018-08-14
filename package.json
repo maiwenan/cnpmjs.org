@@ -4,12 +4,12 @@
   "description": "Private npm registry and web for Enterprise, base on MySQL and Simple Store Service",
   "main": "index.js",
   "scripts": {
-    "dev": "DEBUG=cnpm* node dispatch.js",
-    "test": "make jshint && make test",
-    "test-local": "make test",
-    "start": "./bin/nodejsctl start && cp History.md docs/web/history.md",
-    "status": "./bin/nodejsctl status",
-    "stop": "./bin/nodejsctl stop"
+    "dev": "cross-env NODE_ENV=development DEBUG=cnpm* node dispatch.js",
+    "test": "cross-env make jshint && make test",
+    "test-local": "cross-env make test",
+    "start": "cross-env ./bin/nodejsctl start && cp History.md docs/web/history.md",
+    "status": "cross-env ./bin/nodejsctl status",
+    "stop": "cross-env ./bin/nodejsctl stop"
   },
   "bin": {
     "cnpmjs.org": "bin/cli.js"
@@ -71,6 +71,7 @@
     "autod": "*",
     "chunkstream": "*",
     "contributors": "*",
+    "cross-env": "^5.2.0",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "*",
     "jshint": "*",

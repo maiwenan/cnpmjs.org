@@ -1,0 +1,86 @@
+<link href="/css/list.css" rel="stylesheet" media="screen">
+
+<div id="search" class="row package-list-page">
+  <% if (!packages.length) { %>
+    <div class="ant-alert ant-alert-warn">
+      Can not found package match <%= keyword %>. You can
+      <a href="/sync/<%= keyword %>" target="_blank">SYNC</a> from official npm registry or
+      <a href="https://npmjs.org/search?q=<%= keyword %>" target="_blank">SEARCH</a> in official npm website.
+    </div>
+  <% } else if (!match) { %>
+    <div class="ant-alert ant-alert-info">
+      Can not found package <%= keyword %>. You can
+      <a href="/sync/<%= keyword %>" target="_blank">SYNC</a> from official npm registry or
+      <a href="https://npmjs.org/search?q=<%= keyword %>" target="_blank">SEARCH</a> in official npm website.
+    </div>
+  <% } %>
+
+  <div class="col-12">
+    <% if (packages.length) { %>
+      <% if (keyword) { %>
+        <h2>
+          Packages match "<span style="color: #09f;"><%= keyword %></span>"
+        </h2>
+      <% } %>
+      <div class="package-list">
+        <% if (match) { %>
+          <div class="package-item">
+            <a href="/package/<%= match.name %>" class="package-name"><%= match.name %></a>
+            <div class="package-description"><%= match.description %></div>
+            <div class="package-extra">
+              <a class="package-author" href="/~<%= match.author %>"><%= match.author %></a>
+              <span title="<%= match.publishTime%> and Latest Version">
+                published&nbsp;&nbsp;<%= match.version %>&nbsp;&nbsp;•&nbsp;&nbsp;<%= match.fromNow %>
+              </span>
+            </div>
+          </div>
+        <% } %>
+        <% for (var i = 0; i < packages.length; i++) {
+          var item = packages[i];
+          if (item.name === keyword) {
+            continue;
+          }
+        %>
+          <div class="package-item">
+            <a href="/package/<%= item.name %>" class="package-name"><%= item.name %></a>
+            <div class="package-description"><%= item.description %></div>
+            <div class="package-extra">
+              <a class="package-author" href="/~<%= item.author %>"><%= item.author %></a>&nbsp;&nbsp;
+              <span title="<%= item.publishTime%> and Latest Version">
+                published&nbsp;&nbsp;<%= item.version %>&nbsp;&nbsp;•&nbsp;&nbsp;<%= item.fromNow %>
+              </span>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+
+    <% if (pager.total > 0) {%>
+      <ul class="ant-pagination" unselectable="unselectable">
+        <% if (pager.page !== 1) {%>
+          <li title="上一页" class="ant-pagination-prev" aria-disabled="true">
+            <a class="ant-pagination-item-link" href="/list?q=<%= keyword %>&page=<%= pager.page - 1 %>"></a>
+          </li>
+        <% } else { %>
+          <li title="上一页" class="ant-pagination-disabled ant-pagination-prev" aria-disabled="true">
+            <a class="ant-pagination-item-link"></a>
+          </li>
+        <% } %>
+        <% for (var i = 1; i <= pager.totalPage; i++) {%>
+          <li title="<%= i %>" class="ant-pagination-item <%= pager.page === i ? 'ant-pagination-item-active' : '' %>" tabindex="0">
+            <a href="/list?q=<%= keyword %>&page=<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+        <% if (pager.page !== pager.totalPage) {%>
+          <li title="下一页" tabindex="0" class=" ant-pagination-next" aria-disabled="false">
+            <a class="ant-pagination-item-link" href="/list?q=<%= keyword %>&page=<%= pager.page + 1 %>"></a>
+          </li>
+        <% } else { %>
+          <li title="下一页" tabindex="0" class="ant-pagination-disabled ant-pagination-next" aria-disabled="false">
+            <a class="ant-pagination-item-link"></a>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+  </div>
+</div>

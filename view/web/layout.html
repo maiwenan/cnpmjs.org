@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="shortcut icon" href="/favicon.png">
     <!-- Ant design -->
-    <link href="/css/antd-0.9.1.min.css" rel="stylesheet" media="screen">
+    <link href="/css/antd-3.8.1.min.css" rel="stylesheet" media="screen">
     <link href="/css/main.css" rel="stylesheet" media="screen">
     <link href="/css/yue.css" rel="stylesheet" media="screen">
     <link href="/css/github.css" rel="stylesheet" media="screen">
@@ -24,9 +24,7 @@
             return;
           }
           var val = $(this).val().trim();
-          if (val) {
-            return location.href = '/browse/keyword/' + val;
-          }
+          return location.href = '/list?q=' + val;
         });
 
         $(".nav-tabs li").each(function (index) {
@@ -48,7 +46,12 @@
           <a href="/"><img src="{{logoURL}}"></a>
           {{adBanner}}
         </div>
-        <input type="text" id="search-input" class="ant-input ant-input-lg" placeholder="Search Packages">
+        <input
+          type="text"
+          id="search-input"
+          class="ant-input ant-input-lg"
+          placeholder="Search Packages"
+        />
       </header>
 
       <div class="yue">

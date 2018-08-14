@@ -11,6 +11,8 @@ var version = require('../package.json').version;
 var root = path.dirname(__dirname);
 var dataDir = path.join(process.env.HOME || root, '.cnpmjs.org');
 
+console.log(process.env.NODE_ENV);
+
 var config = {
   version: version,
   dataDir: dataDir,
@@ -27,7 +29,7 @@ var config = {
 
   registryPort: 7001,
   webPort: 7002,
-  bindingHost: '127.0.0.1', // only binding on 127.0.0.1 for local access
+  // bindingHost: '127.0.0.1', // only binding on 127.0.0.1 for local access
 
   // debug mode
   // if in debug mode, some middleware like limit wont load
@@ -63,9 +65,8 @@ var config = {
   // default system admins
   admins: {
     // name: email
-    fengmk2: 'fengmk2@gmail.com',
-    admin: 'admin@cnpmjs.org',
-    dead_horse: 'dead_horse@qq.com',
+    gsui: 'gsui@gridsum.com',
+    admin: 'admin@gridsum.org',
   },
 
   // email notification for errors
@@ -98,13 +99,13 @@ var config = {
    */
 
   database: {
-    db: 'cnpmjs_test',
+    db: 'cnpm',
     username: 'root',
-    password: '',
+    password: '123456',
 
     // the sql dialect of the database
     // - currently supported: 'mysql', 'sqlite', 'postgres', 'mariadb'
-    dialect: 'sqlite',
+    dialect: 'mysql',
 
     // custom host; default: 127.0.0.1
     host: '127.0.0.1',
@@ -135,7 +136,7 @@ var config = {
   downloadRedirectToNFS: false,
 
   // registry url name
-  registryHost: 'r.cnpmjs.org',
+  registryHost: 'http://127.0.0.1:7001',
 
   /**
    * registry mode config
@@ -181,7 +182,7 @@ var config = {
   // none: do not sync any module, proxy all public modules from sourceNpmRegistry
   // exist: only sync exist modules
   // all: sync all modules
-  syncModel: 'none', // 'none', 'all', 'exist'
+  syncModel: 'exit', // 'none', 'all', 'exist'
 
   syncConcurrency: 1,
   // sync interval, default is 10 minutes

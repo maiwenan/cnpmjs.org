@@ -2,6 +2,7 @@
 
 var showPackage = require('../controllers/web/package/show');
 var searchPackage = require('../controllers/web/package/search');
+var listPackages = require('../controllers/web/package/list');
 var searchRange = require('../controllers/web/package/search_range');
 var listPrivates = require('../controllers/web/package/list_privates');
 var showSync = require('../controllers/web/show_sync');
@@ -24,6 +25,8 @@ function routes(app) {
 
   app.get(/\/browse\/keyword\/(@[\w\-\.]+\/[\w\-\.]+)$/, searchPackage);
   app.get('/browse/keyword/:word', searchPackage);
+
+  app.get('/list', listPackages);
 
   app.get('/~:name', showUser);
 

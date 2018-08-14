@@ -1,0 +1,40 @@
+
+.package-list-page .ant-pagination {
+  padding-left: 0;
+  margin: 20px 0;
+}
+
+.ant-pagination-item a {
+  display: block;
+  margin: 0;
+  line-height: 30px;
+}
+
+.package-list {
+  margin-top: 15px;
+}
+
+.package-item {
+  padding: 10px 0 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.package-name {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.package-description {
+  margin: 6px 0;
+}
+
+.package-extra {
+  color: #999;
+}
+
+.package-author {
+  font-weight: 600;
+  color: rgba(0,0,0,.65);
+}
+

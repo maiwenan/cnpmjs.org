@@ -1,9 +1,11 @@
 'use strict';
 
 var semver = require('semver');
+var Sequelize = require('sequelize');
 var models = require('../models');
 var common = require('./common');
 var config = require('../config');
+var Op = Sequelize.Op;
 var Tag = models.Tag;
 var User = models.User;
 var Module = models.Module;
@@ -784,6 +786,41 @@ exports.search = function* (word, options) {
   if (ids.length > 0) {
     data.searchMatchs = yield Module.findAll({
       attributes: [ 'name', 'description' ],
+      where: {
+        id: ids
+      },
+      order: 'name'
+    });
+  }
+
+  return data;
+};
+
+// listPackages
+exports.listPackages = function* (word, offset, limit) {
+  word = word.replace(/^%/, ''); //ignore prefix %
+
+  var ids = {};
+
+  var sql = 'SELECT module_id FROM tag WHERE LOWER(name) LIKE LOWER(?) AND tag=\'latest\' \
+    ORDER BY name LIMIT ?,?;';
+  var totalSql = 'SELECT count(module_id) as total FROM tag WHERE LOWER(name) LIKE LOWER(?) AND tag=\'latest\'';
+  var rows = yield models.query(sql, [ '%' + word + '%', offset, limit ]);
+  var totalResult = yield models.query(totalSql, [ '%' + word + '%' ]);
+
+  for (var i = 0; i < rows.length; i++) {
+    ids[rows[i].module_id] = 1;
+  }
+
+  var data = {
+    total: totalResult[0].total,
+    searchMatchs: []
+  };
+
+  ids = Object.keys(ids);
+  if (ids.length > 0) {
+    data.searchMatchs = yield Module.findAll({
+      attributes: [ 'name', 'description', 'author', 'version', 'publish_time' ],
       where: {
         id: ids
       },
